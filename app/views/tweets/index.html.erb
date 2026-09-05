@@ -1,0 +1,97 @@
+<h1>自分の題名</h1>
+<h3>一覧ページ</h3>
+
+<h3>投稿を検索</h3>
+ <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+   <%= text_field_tag :search %>
+   <%= submit_tag '検索する'  %>
+<% end %>
+
+<%= link_to "新規投稿へ", new_tweet_path %>
+
+<div class="tweets-container">
+  <% @tweets.each do |t| %>
+    <div class="tweet">
+    <%= t.user.email %>
+      <%= t.road %>
+      <%= t.day %>
+      <%= t.address %>
+      <%= t.about %>
+      <%= link_to "詳細へ", tweet_path(t.id) %>
+      <%= link_to "編集する", edit_tweet_path(t.id) %>
+      <%= button_to "削除する", tweet_path(t.id), method: :delete %> 
+      </div>
+  <% end %>
+</div>
+<h2>gmap</h2>
+
+<input id="address" type="textbox" value="GeekSalon">
+<input type="button" value="Encode" onclick="codeAddress()">
+
+<div id="display">何かが表示される、、、、！</div>
+
+<div id='map'></div>
+
+<style>
+# map {
+  height: 600px;
+  width: 600px;
+}
+</style>
+
+<script>
+let map
+
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 40.7828, lng:-73.9653},
+    zoom: 12,
+  });
+
+  marker = new google.maps.Marker({
+    position:  {lat: 40.7828, lng:-73.9653},
+    map: map
+
+  let geocoder
+
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('該当する結果がありませんでした：' + status);
+    }
+  });   
+}
+
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAaP88KptzSEbm9oYCjGA9pTkhL0ORyDo&callback=initMap" async defer></script>
+
+<%= stylesheet_link_tag 'index', :media => "all" %>
+
+<div class="tweets-container">
+<h3>Tweet一覧</h3>
+  <% @tweets.each do |t| %>
+    <div class="tweet">
+      <div class="main-box">
+        <div class="left-container"><%= t.road %></div>
+        <div class="right-container">
+          <%= link_to "詳細", tweet_path(t.id) %>
+          <%= link_to "編集", edit_tweet_path(t.id) %>
+          <%= link_to "削除", tweet_path(t.id), method: :delete %>
+        </div>
+      </div>
+        <p class="time"><%= t.created_at %></p>
+    </div>
+  <% end %>
+</div>
