@@ -1,10 +1,26 @@
-<h1>自分の題名</h1>
-<h3>一覧ページ</h3>
+<h1>君が見つけた君だけの道</h1>
+<h3>軌跡</h3>
 
-<h3>投稿を検索</h3>
+<h3>お店部門</h3>
  <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
    <%= text_field_tag :search %>
-   <%= submit_tag '検索する'  %>
+   <%= submit_tag '記録する'  %>
+<% end %>
+
+<h3>軌跡</h3>
+
+<h3>速度部門</h3>
+ <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+   <%= text_field_tag :search %>
+   <%= submit_tag '記録する'  %>
+<% end %>
+
+<h3>軌跡</h3>
+
+<h3>風景部門</h3>
+ <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+   <%= text_field_tag :search %>
+   <%= submit_tag '記録する'  %>
 <% end %>
 
 <%= link_to "新規投稿へ", new_tweet_path %>
@@ -28,7 +44,7 @@
 <input id="address" type="textbox" value="GeekSalon">
 <input type="button" value="Encode" onclick="codeAddress()">
 
-<div id="display">何かが表示される、、、、！</div>
+<div id="display">何かが表示される！</div>
 
 <div id='map'></div>
 
@@ -80,7 +96,7 @@ function codeAddress(){
 <%= stylesheet_link_tag 'index', :media => "all" %>
 
 <div class="tweets-container">
-<h3>Tweet一覧</h3>
+<h3>道一覧</h3>
   <% @tweets.each do |t| %>
     <div class="tweet">
       <div class="main-box">
