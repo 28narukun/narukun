@@ -1,2 +1,138 @@
-tweets-container {   width: 50%;   margin: 10px auto; } h3 {   width: 100px;   margin: 30px auto;   text-align: center; } .tweet {   border-top: solid #00acee;   margin-top: 10px;   padding-top: 20px; } .main-box {   margin: 100px 0;   display: flex;   justify-content: space-between; } .time {   display: flex;   justify-content: flex-end; }
+/* 全体 */
+body{
+  margin:0;
+  font-family:"Yu Gothic","Hiragino Sans",sans-serif;
+  background:#eef7ff;
+  color:#222;
+}
+
+/* ヒーロー */
+.hero{
+  position:relative;
+  height:70vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+  overflow:hidden;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(0,110,220,.35),rgba(0,70,160,.35)),
+    url("/images/road-balloon-bg.png");
+  background-size:cover;
+  background-position:center;
+  z-index:-1;
+}
+
+.hero h1{
+  font-size:64px;
+  text-shadow:0 4px 20px rgba(0,0,0,.4);
+}
+
+.subtitle{
+  font-size:22px;
+  margin-top:15px;
+}
+
+/* ボタン */
+
+.main-button{
+  display:inline-block;
+  margin-top:30px;
+  padding:14px 34px;
+  background:white;
+  color:#0066d6;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:bold;
+  transition:.3s;
+}
+
+.main-button:hover{
+  transform:translateY(-3px);
+}
+
+/* 検索 */
+
+.search-box{
+  margin:40px auto;
+  text-align:center;
+}
+
+.search-box input[type=text]{
+  width:320px;
+  padding:12px;
+  border-radius:30px;
+  border:none;
+  box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
+
+/* セクション */
+
+.section-title{
+  text-align:center;
+  color:#0a56b5;
+  margin:60px 0 30px;
+  font-size:34px;
+}
+
+/* 投稿カード */
+
+.tweets-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+  width:90%;
+  margin:auto;
+}
+
+.tweet{
+  background:rgba(255,255,255,.75);
+  backdrop-filter:blur(10px);
+  border-radius:25px;
+  padding:22px;
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
+  transition:.3s;
+}
+
+.tweet:hover{
+  transform:translateY(-6px);
+}
+
+.tweet p{
+  margin:8px 0;
+}
+
+/* ボタン */
+
+.tweet a,
+.tweet form button{
+  display:inline-block;
+  margin-top:10px;
+  padding:8px 16px;
+  border-radius:20px;
+  text-decoration:none;
+  border:none;
+  cursor:pointer;
+}
+
+.tweet a:first-of-type{
+  background:#0066d6;
+  color:white;
+}
+
+.tweet a:nth-of-type(2){
+  background:#eee;
+}
+
+.tweet form button{
+  background:#ff5252;
+  color:white;
+}
 

@@ -1,113 +1,98 @@
-<h1>君が見つけた君だけの道</h1>
-<h3>軌跡</h3>
+<div class="hero">
+  <div>
+    <h1>君が見つけた君だけの道</h1>
+    <p class="subtitle">
+      道路でつながる、新しいコミュニティ。
+    </p>
 
+    <%= link_to "新規投稿へ", new_tweet_path, class:"main-button" %>
+  </div>
+</div>
+
+<div class="search-box">
+<%= form_tag({controller:"tweets",action:"index"},method: :get) do %>
+  <%= text_field_tag :search, params[:search], placeholder:"道路名で検索..." %>
+  <%= submit_tag "検索" %>
+<% end %>
+</div>
+
+<h3>軌跡</h3>
 <h3>お店部門</h3>
- <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
-   <%= text_field_tag :search %>
-   <%= submit_tag '記録する'  %>
-<% end %>
-
-<h3>軌跡</h3>
-
-<h3>速度部門</h3>
- <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
-   <%= text_field_tag :search %>
-   <%= submit_tag '記録する'  %>
-<% end %>
-
-<h3>軌跡</h3>
-
-<h3>風景部門</h3>
- <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
-   <%= text_field_tag :search %>
-   <%= submit_tag '記録する'  %>
-<% end %>
-
-<%= link_to "新規投稿へ", new_tweet_path %>
 
 <div class="tweets-container">
   <% @tweets.each do |t| %>
-    <div class="tweet">
-    <%= t.user.email %>
-      <%= t.road %>
-      <%= t.day %>
-      <%= t.address %>
-      <%= t.about %>
-      <%= link_to "詳細へ", tweet_path(t.id) %>
-      <%= link_to "編集する", edit_tweet_path(t.id) %>
-      <%= button_to "削除する", tweet_path(t.id), method: :delete %> 
+
+    <% if t.shop_detail.present? %>
+      <div class="tweet">
+
+        <p>名前：<%= t.road %></p>
+        <p>日付：<%= t.day %></p>
+        <p>場所：<%= t.address %></p>
+        <p>お店：<%= t.shop_detail %></p>
+
+        <%= link_to "詳細へ", tweet_path(t.id) %>
+        <%= link_to "編集する", edit_tweet_path(t.id) %>
+        <%= button_to "削除する",
+            tweet_path(t.id),
+            method: :delete,
+            data: { turbo_confirm: "本当に削除しますか？" } %>
+
       </div>
+    <% end %>
+
   <% end %>
 </div>
-<h2>gmap</h2>
 
-<input id="address" type="textbox" value="GeekSalon">
-<input type="button" value="Encode" onclick="codeAddress()">
 
-<div id="display">何かが表示される！</div>
-
-<div id='map'></div>
-
-<style>
-# map {
-  height: 600px;
-  width: 600px;
-}
-</style>
-
-<script>
-let map
-
-function initMap(){
-  geocoder = new google.maps.Geocoder()
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 40.7828, lng:-73.9653},
-    zoom: 12,
-  });
-
-  marker = new google.maps.Marker({
-    position:  {lat: 40.7828, lng:-73.9653},
-    map: map
-
-  let geocoder
-
-function codeAddress(){
-  let inputAddress = document.getElementById('address').value;
-
-  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-    if (status == 'OK') {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
-    } else {
-      alert('該当する結果がありませんでした：' + status);
-    }
-  });   
-}
-
-  });
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAaP88KptzSEbm9oYCjGA9pTkhL0ORyDo&callback=initMap" async defer></script>
-
-<%= stylesheet_link_tag 'index', :media => "all" %>
+<h3>速度部門</h3>
 
 <div class="tweets-container">
-<h3>道一覧</h3>
   <% @tweets.each do |t| %>
-    <div class="tweet">
-      <div class="main-box">
-        <div class="left-container"><%= t.road %></div>
-        <div class="right-container">
-          <%= link_to "詳細", tweet_path(t.id) %>
-          <%= link_to "編集", edit_tweet_path(t.id) %>
-          <%= link_to "削除", tweet_path(t.id), method: :delete %>
-        </div>
+
+    <% if t.speed_detail.present? %>
+      <div class="tweet">
+
+        <p>名前：<%= t.road %></p>
+        <p>日付：<%= t.day %></p>
+        <p>場所：<%= t.address %></p>
+        <p>速度：<%= t.speed_detail %></p>
+
+        <%= link_to "詳細へ", tweet_path(t.id) %>
+        <%= link_to "編集する", edit_tweet_path(t.id) %>
+        <%= button_to "削除する",
+            tweet_path(t.id),
+            method: :delete,
+            data: { turbo_confirm: "本当に削除しますか？" } %>
+
       </div>
-        <p class="time"><%= t.created_at %></p>
-    </div>
+    <% end %>
+
+  <% end %>
+</div>
+
+
+<h3>風景部門</h3>
+
+<div class="tweets-container">
+  <% @tweets.each do |t| %>
+
+    <% if t.scenery_detail.present? %>
+      <div class="tweet">
+
+        <p>名前：<%= t.road %></p>
+        <p>日付：<%= t.day %></p>
+        <p>場所：<%= t.address %></p>
+        <p>風景：<%= t.scenery_detail %></p>
+
+        <%= link_to "詳細へ", tweet_path(t.id) %>
+        <%= link_to "編集する", edit_tweet_path(t.id) %>
+        <%= button_to "削除する",
+            tweet_path(t.id),
+            method: :delete,
+            data: { turbo_confirm: "本当に削除しますか？" } %>
+
+      </div>
+    <% end %>
+
   <% end %>
 </div>

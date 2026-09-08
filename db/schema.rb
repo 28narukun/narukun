@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_08_12_113043) do
+ActiveRecord::Schema[7.2].define(version: 2026_09_08_131835) do
   create_table "tweets", force: :cascade do |t|
     t.string "road"
     t.date "day"
@@ -19,6 +19,9 @@ ActiveRecord::Schema[7.2].define(version: 2026_08_12_113043) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.text "shop_detail"
+    t.text "speed_detail"
+    t.text "scenery_detail"
   end
 
   create_table "users", force: :cascade do |t|

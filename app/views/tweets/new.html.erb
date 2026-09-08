@@ -1,45 +1,53 @@
 <h1>(なるのさいと)</h1>
 <h3>新規投稿ページ</h3>
-<%= form_for @tweet do  |f| %>
 
-
-  <div class="field">
-    <%= f.label :名前 %>
-    <%= f.text_field :road, :size => 30 %>
-  </div>
-
+<%= form_for @tweet do |f| %>
 
   <div class="field">
-    <%= f.label :日付け  %>
-     <%= f.text_field :day, :size => 30 %>
+    <%= f.label :road, "名前" %>
+    <%= f.text_field :road, size: 30 %>
   </div>
-
- <div class="field">
-    <%= f.label :場所  %>
-    <%= f.text_field :address, :size => 30 %>
-  </div>
-
 
   <div class="field">
-    <%= f.label :詳細  %>
-    <%= f.text_area :about, :size => "30x2" %>
+    <%= f.label :day, "日付け" %>
+    <%= f.text_field :day, size: 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address, "場所" %>
+    <%= f.text_field :address, size: 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :about, "道路の詳細" %>
+    <%= f.text_area :about, size: "30x2" %>
+  </div>
+
+  <hr>
+
+  <h3>お店部門</h3>
+  <div class="field">
+    <%= f.label :shop_detail, "おすすめのお店・施設など" %>
+    <%= f.text_area :shop_detail, size: "30x4" %>
+  </div>
+
+  <h3>速度部門</h3>
+  <div class="field">
+    <%= f.label :speed_detail, "速度・走りやすさなど" %>
+    <%= f.text_area :speed_detail, size: "30x4" %>
+  </div>
+
+  <h3>風景部門</h3>
+  <div class="field">
+    <%= f.label :scenery_detail, "風景・景色など" %>
+    <%= f.text_area :scenery_detail, size: "30x4" %>
   </div>
 
   <%= f.submit "投稿する" %>
+
 <% end %>
 
 <%= link_to "一覧に戻る", tweets_path %>
 
-<%= stylesheet_link_tag 'new', :media => "all" %>
+<%= stylesheet_link_tag 'new', media: "all" %>
 
-<div class="post-container">
-    <p class="title">投稿フォーム</p>
-    <%= form_for(@tweet, :url => { controller:'tweets', action:'create'})do |f| %>
-    <%= f.label :投稿内容 %>
-        <br>
-        <%= f.text_field :body,size: 140%>
-        <br>
-    <%= f.submit "送信"%>
-    <br>
-    <% end %>
-</div>

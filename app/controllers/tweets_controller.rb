@@ -3,16 +3,20 @@ class TweetsController < ApplicationController
    before_action :authenticate_user!, only: [:new, :create]
 
     def index
-      if params[:search] == nil
-        @tweets= Tweet.all
-      else
-        if params[:search] == ''
-        @tweets= Tweet.all
-      else
-        #部分検索
-        @tweets = Tweet.where("body LIKE ? ",'%' + params[:search] + '%')
-      end
-    end
+      if params[:search].present?
+  @tweets = Tweet.where(
+    "road LIKE :search OR
+     day LIKE :search OR
+     address LIKE :search OR
+     about LIKE :search OR
+     shop_detail LIKE :search OR
+     speed_detail LIKE :search OR
+     scenery_detail LIKE :search",
+    search: "%#{params[:search]}%"
+  )
+else
+  @tweets = Tweet.all
+end
     end
   
     def new
@@ -56,6 +60,14 @@ class TweetsController < ApplicationController
 
    private
    def tweet_params
-    params.require(:tweet).permit(:road, :day, :address, :about)
-   end
-  end
+  params.require(:tweet).permit(
+    :road,
+    :day,
+    :address,
+    :about,
+    :shop_detail,
+    :speed_detail,
+    :scenery_detail
+  )
+end
+end
