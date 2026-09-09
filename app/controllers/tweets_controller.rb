@@ -6,7 +6,7 @@ class TweetsController < ApplicationController
       if params[:search].present?
   @tweets = Tweet.where(
     "road LIKE :search OR
-     day LIKE :search OR
+     CAST(day AS TEXT) LIKE :search OR
      address LIKE :search OR
      about LIKE :search OR
      shop_detail LIKE :search OR
