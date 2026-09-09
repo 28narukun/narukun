@@ -1,19 +1,20 @@
 <div class="hero">
-  <div>
+  <div class="hero-content">
     <h1>君が見つけた君だけの道</h1>
+
     <p class="subtitle">
       道路でつながる、新しいコミュニティ。
     </p>
 
-    <%= link_to "新規投稿へ", new_tweet_path, class:"main-button" %>
+    <%= link_to "新規投稿へ", new_tweet_path, class: "main-button" %>
   </div>
 </div>
 
 <div class="search-box">
-<%= form_tag({controller:"tweets",action:"index"},method: :get) do %>
-  <%= text_field_tag :search, params[:search], placeholder:"道路名で検索..." %>
-  <%= submit_tag "検索" %>
-<% end %>
+  <%= form_tag({controller: "tweets", action: "index"}, method: :get) do %>
+    <%= text_field_tag :search, params[:search], placeholder: "道路名で検索..." %>
+    <%= submit_tag "検索" %>
+  <% end %>
 </div>
 
 <h3>軌跡</h3>
