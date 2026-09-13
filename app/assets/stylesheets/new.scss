@@ -1,10 +1,25 @@
-post-container {
-  margin: 50px auto;
-  width: 50%;
-  border: solid #d3def1;
-  border-radius: 10px;
-  text-align: center;
-  background-color: #d3def1;
+.new-page{
+  min-height:100vh;
+  background-image:image-url("aqualine.jpg");
+  background-size:cover;
+  background-position:center top;
+  background-repeat:no-repeat;
+
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;   /* 中央じゃなく上寄せ */
+  padding-top:35px;
+}
+.post-container{
+  width:720px;
+  max-width:90%;
+}
+
+.background{
+  backdrop-filter: blur(12px);
+
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
 }
 .title {
   font-size: 32px;
@@ -12,12 +27,117 @@ post-container {
   margin-bottom: 50px;
 }
 input[type="text"] {
-  width: 100%;
-  height: 30px;
+  width:100%;
+  height:45px;
+  border-radius:12px;
+  border:1px solid #cfdff3;
+  padding:0 12px;
+  box-sizing:border-box;
+}
+
+textarea{
+  width:100%;
+  min-height:100px;
+  border-radius:12px;
+  border:1px solid #cfdff3;
+  padding:12px;
+  box-sizing:border-box;
 }
 input[type="submit"] {
   width: 150px;
   font-size:15px;
   margin-top: 50px;
   margin-bottom: 30px;
+}
+.page-title{
+  color:white;
+  font-size:44px;
+  margin: bottom 6px;
+}
+
+.catch{
+  color:white;
+  font: size 20px;
+  margin: bottom 18px;
+}
+
+/* 全体フォーム */
+
+.post-container{
+  width:85%;
+  max-width:900px;
+}
+
+/* カード */
+
+.section-card{
+ background:rgba(255,255,255,.82);
+ backdrop-filter:blur(10px);
+
+  border-radius:20px;
+
+  padding:16px;
+  margin-bottom:14px;
+
+  box-shadow:0 6px 16px rgba(0,0,0,.15);
+}
+
+/* 見出し */
+
+.section-card h3{
+  color:#0057c8;
+  font-size:30px;
+  margin-bottom:18px;
+}
+
+/* ラベル */
+
+.field label{
+  display:block;
+  color:#0057c8;
+  font-weight:bold;
+  margin: bottom 4px;
+  font-size:17px;
+}
+
+/* 入力欄 */
+
+.field input{
+  height:42px;
+  padding:10px 14px;
+}
+
+.field textarea{
+   min-height:70px;
+  padding:10px 14px;
+}
+
+/* テキストエリア */
+
+.field textarea{
+  min-height:130px;
+  resize:vertical;
+}
+
+/* ボタン */
+
+.submit-btn{
+ width:100%;
+  background:linear-gradient(135deg,#0066e8,#004fb5);
+  color:white;
+  border-radius:999px;
+  font-size:22px;
+  padding:18px;
+  box-shadow:0 10px 25px rgba(0,80,180,.35);
+}
+
+.submit-btn:hover{
+  background:#004fb5;
+}
+
+.back-link{
+  display:inline-block;
+  margin-top:20px;
+  color:rgb(255, 255, 255);
+  font-weight:bold;
 }

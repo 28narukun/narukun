@@ -1,52 +1,69 @@
-<h3>新規投稿ページ</h3>
+<div class="new-page">
+  <div class="post-container">
 
-<%= form_for @tweet do |f| %>
+    <h2 class="page-title">🚗 新規投稿ページ</h2>
+    <p class="catch">好きな道を、みんなとシェアしよう。</p>
 
-  <div class="field">
-    <%= f.label :road, "名前" %>
-    <%= f.text_field :road, size: 30 %>
+    <%= form_for @tweet do |f| %>
+
+      <div class="section-card">
+        <h3>❣  基本情報</h3>
+
+        <div class="field">
+          <%= f.label :road, "名前" %>
+          <%= f.text_field :road, placeholder: "例）国道16号" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :day, "日付" %>
+          <%= f.text_field :day, placeholder: "例）2026-09-13" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :address, "場所" %>
+          <%= f.text_field :address, placeholder: "例）柏市" %>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3>🛣️ 道路の詳細</h3>
+
+        <div class="field">
+          <%= f.text_area :about, placeholder: "この道の魅力を書こう！" %>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3>🍜 お店部門</h3>
+
+        <div class="field">
+          <%= f.text_area :shop_detail, placeholder: "おすすめのお店・施設など" %>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3>🚘 速度部門</h3>
+
+        <div class="field">
+          <%= f.text_area :speed_detail, placeholder: "速度・走りやすさなど" %>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3>🌅 風景部門</h3>
+
+        <div class="field">
+          <%= f.text_area :scenery_detail, placeholder: "風景・景色など" %>
+        </div>
+      </div>
+
+      <%= f.submit "✈ 投稿する", class: "submit-btn" %>
+
+    <% end %>
+
+    <%= link_to "← 一覧に戻る", tweets_path, class: "back-link" %>
+
   </div>
-
-  <div class="field">
-    <%= f.label :day, "日付け" %>
-    <%= f.text_field :day, size: 30 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address, "場所" %>
-    <%= f.text_field :address, size: 30 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :about, "道路の詳細" %>
-    <%= f.text_area :about, size: "30x2" %>
-  </div>
-
-  <hr>
-
-  <h3>お店部門</h3>
-  <div class="field">
-    <%= f.label :shop_detail, "おすすめのお店・施設など" %>
-    <%= f.text_area :shop_detail, size: "30x4" %>
-  </div>
-
-  <h3>速度部門</h3>
-  <div class="field">
-    <%= f.label :speed_detail, "速度・走りやすさなど" %>
-    <%= f.text_area :speed_detail, size: "30x4" %>
-  </div>
-
-  <h3>風景部門</h3>
-  <div class="field">
-    <%= f.label :scenery_detail, "風景・景色など" %>
-    <%= f.text_area :scenery_detail, size: "30x4" %>
-  </div>
-
-  <%= f.submit "投稿する" %>
-
-<% end %>
-
-<%= link_to "一覧に戻る", tweets_path %>
+</div>
 
 <%= stylesheet_link_tag 'new', media: "all" %>
-
